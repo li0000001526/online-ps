@@ -1399,6 +1399,11 @@ function buildMenubar(){
       {label:'适应窗口', accel:'Ctrl+0', act:zoomFit, need:true},
       {label:'实际大小 100%', accel:'Ctrl+1', act:zoomActual, need:true},
     ]},
+    {label:'博客', items:[
+      {label:'🌍 全球养老规划 · RetirePlan', act:()=>window.open('https://blog.li00000.xyz/','_blank')},
+      {label:'---'},
+      {label:'更多博客即将上线…', act:()=>setHint('更多博客敬请期待')},
+    ]},
     {label:'帮助', items:[
       {label:'快捷键', act:showShortcuts},
       {label:'关于在线PS', act:showAbout},
