@@ -17,7 +17,7 @@
 <meta name="twitter:title" content="在线PS - 免费在线图片编辑器">
 <meta name="twitter:description" content="仿Photoshop的免费网页修图工具，支持图层/滤镜/抠图/加文字，本地处理不上传。">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"在线PS","alternateName":["在线图片编辑器","网页版PS"],"url":"https://li00000.xyz/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","browserRequirements":"需要支持 HTML5 Canvas 的现代浏览器","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"description":"免费在线图片编辑器：图层、滤镜、抠图、文字、形状、选区、裁剪旋转、导出PNG/JPG，浏览器本地处理不上传。","keywords":"在线PS,在线图片编辑器,免费修图,网页版PS,在线抠图,图片编辑,加文字,裁剪,调色","featureList":["图层编辑","滤镜特效","选区与抠图","文字添加","形状绘制","渐变填充","裁剪与旋转","画笔与油漆桶","取色器","导出 PNG/JPG"],"inLanguage":"zh-CN","publisher":{"@type":"Organization","name":"在线PS","url":"https://li00000.xyz/"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"在线PS","alternateName":["在线图片编辑器","网页版PS"],"url":"https://li00000.xyz/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","browserRequirements":"需要支持 HTML5 Canvas 的现代浏览器","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},"description":"免费在线图片编辑器：图层、滤镜、抠图、文字、形状、选区、裁剪旋转、导出PNG/JPG，浏览器本地处理不上传。","keywords":"在线PS,在线图片编辑器,免费修图,网页版PS,在线抠图,图片编辑,加文字,裁剪,调色","featureList":["图层编辑","滤镜特效","选区与抠图","文字添加","形状绘制","渐变填充","裁剪与旋转","画笔与油漆桶","取色器","导出 PNG/JPG"],"inLanguage":["zh-CN","en","ja","ko","es"],"publisher":{"@type":"Organization","name":"在线PS","url":"https://li00000.xyz/"}}
 </script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230d99ff'%3E%3Cpath d='M12 2 3 7v10l9 5 9-5V7z'/%3E%3C/svg%3E">
 <style>
@@ -62,6 +62,12 @@ input[type=color]::-webkit-color-swatch{border:1px solid var(--line2);border-rad
 .dropdown .mi:hover .accel{color:#cfe8ff}
 .dropdown .sep{height:1px;background:var(--line);margin:4px 6px}
 .dropdown .grp-label{font-size:11px;color:var(--txt-dim);padding:5px 10px 2px}
+/* i18n 语言选择器 */
+#lang-btn{margin-left:auto}
+#lang-drop{left:auto;right:0;min-width:150px}
+.dropdown .mi.on{background:var(--accent);color:#fff}
+.dropdown .mi.on .accel{color:#cfe8ff}
+
 #menubar-right{margin-left:auto;display:flex;align-items:center;padding:0 10px;font-size:12px;color:var(--txt-dim);gap:10px}
 
 /* ============ 工具选项栏 ============ */
@@ -254,7 +260,7 @@ input[type=color]::-webkit-color-swatch{border:1px solid var(--line2);border-rad
           <svg class="wlogo" viewBox="0 0 24 24" fill="none" stroke="#0d99ff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M8.5 8.5v7M8.5 8.5h5M8.5 12h4M15.5 15.5v-7" stroke="#8fd0ff"/></svg>
           <h1>在线PS - 免费在线图片编辑器</h1>
           <div class="sub">免费 · 无需安装 · 完全在浏览器本地运行<br>图片不会上传到任何服务器，隐私安全</div>
-          <p class="wdesc">在线PS 是一款<b>免费在线图片编辑器</b>（网页版 PS）：支持<b>图层</b>、<b>滤镜</b>、<b>抠图与选区</b>、<b>加文字</b>、<b>裁剪旋转</b>、<b>调色</b>、形状与渐变，一键导出 <b>PNG / JPG</b>。无需安装 Photoshop 或注册账号，浏览器打开即用，图片全程本地处理不上传。</p>
+          <p class="wdesc" data-i18n-html="welcome.desc">在线PS 是一款<b>免费在线图片编辑器</b>（网页版 PS）：支持<b>图层</b>、<b>滤镜</b>、<b>抠图与选区</b>、<b>加文字</b>、<b>裁剪旋转</b>、<b>调色</b>、形状与渐变，一键导出 <b>PNG / JPG</b>。无需安装 Photoshop 或注册账号，浏览器打开即用，图片全程本地处理不上传。</p>
           <div class="wbtns">
             <button class="wbtn" id="w-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg><span>新建画布</span><small>自定义尺寸</small></button>
             <button class="wbtn" id="w-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h18"/></svg><span>打开图片</span><small>本地文件 / 拖拽</small></button>
@@ -312,6 +318,238 @@ input[type=color]::-webkit-color-swatch{border:1px solid var(--line2);border-rad
 <div id="modal-root"></div>
 
 <script>
+/* ==================== i18n 多语言 ==================== */
+const LANGS=[['zh','中文'],['en','English'],['ja','日本語'],['ko','한국어'],['es','Español']];
+const I18N={
+en:{
+'文件':'File','新建…':'New…','打开图片…':'Open Image…','从剪贴板粘贴':'Paste from Clipboard','打开为图层…':'Open as Layer…','保存为 PNG':'Save as PNG','保存为 JPG':'Save as JPG','关闭文档':'Close Document',
+'编辑':'Edit','撤销':'Undo','重做':'Redo','复制选区':'Copy Selection','粘贴':'Paste','全选':'Select All','取消选区':'Deselect','填充选区':'Fill Selection','清除选区内容':'Clear Selection','清空图层':'Clear Layer',
+'图像':'Image','画布大小…':'Canvas Size…','缩放图像…':'Scale Image…','旋转 90° 顺时针':'Rotate 90° CW','旋转 90° 逆时针':'Rotate 90° CCW','水平翻转':'Flip Horizontal','垂直翻转':'Flip Vertical',
+'图层':'Layer','新建图层':'New Layer','复制图层':'Duplicate Layer','删除图层':'Delete Layer','上移图层':'Move Layer Up','下移图层':'Move Layer Down','合并可见图层':'Merge Visible',
+'文字':'Text','添加文字…':'Add Text…','编辑文字图层…':'Edit Text Layer…',
+'滤镜':'Filter','灰度':'Grayscale','反色':'Invert','二值化':'Threshold','怀旧 (Sepia)':'Sepia','亮度/对比度…':'Brightness/Contrast…','色相/饱和度…':'Hue/Saturation…','模糊…':'Blur…','锐化…':'Sharpen…','像素化…':'Pixelate…',
+'视图':'View','放大':'Zoom In','缩小':'Zoom Out','适应窗口':'Fit to Window','实际大小 100%':'Actual Size 100%',
+'博客':'Blog','博客中心…':'Blog Center…','帮助':'Help','快捷键':'Shortcuts','关于在线PS':'About Online PS',
+'移动':'Move','矩形选区':'Rect Select','裁剪':'Crop','画笔':'Brush','橡皮擦':'Eraser','油漆桶填充':'Paint Bucket','渐变':'Gradient','矩形':'Rectangle','椭圆':'Ellipse','直线':'Line','箭头':'Arrow','取色器':'Color Picker',
+'添加文字':'Add Text','新建画布':'New Canvas','编辑文字':'Edit Text','画布大小':'Canvas Size','缩放图像':'Scale Image','亮度':'Brightness','对比度':'Contrast','饱和度':'Saturation','模糊半径':'Blur Radius','锐化强度':'Sharpen Amount','像素块大小':'Pixel Size',
+'历史记录':'History','模式':'Mode','不透明度':'Opacity','新建':'New','复制':'Duplicate','上移':'Move Up','下移':'Move Down','合并可见':'Merge Visible',
+'正常':'Normal','正片叠底':'Multiply','滤色':'Screen','叠加':'Overlay','变暗':'Darken','变亮':'Lighten','颜色减淡':'Color Dodge','颜色加深':'Color Burn','强光':'Hard Light','柔光':'Soft Light','差值':'Difference','排除':'Exclusion',
+'颜色':'Color','字号':'Font Size','样式':'Style','宽度':'Width','高度':'Height','比例':'Ratio','锚点':'Anchor','预设':'Preset','背景':'Background','透明':'Transparent','白色':'White','内容':'Content','加粗':'Bold','常规':'Regular','居中':'Center','左对齐':'Align Left','右对齐':'Align Right','水平':'Horizontal','垂直':'Vertical',
+'混合模式':'Blend Mode','图层不透明度':'Layer Opacity','保存':'Save','关闭':'Close','创建':'Create','副本':'Copy',
+'前景/背景色 · 点击取色':'Foreground/Background · click to pick','交换前景/背景色 (X)':'Swap colors (X)','缩小 (Ctrl+-)':'Zoom out (Ctrl+-)','点击恢复 100%':'Click to reset 100%','放大 (Ctrl++)':'Zoom in (Ctrl++)','适应窗口 (Ctrl+0)':'Fit to window (Ctrl+0)','实际大小 (Ctrl+1)':'Actual size (Ctrl+1)','撤销 (Ctrl+Z)':'Undo (Ctrl+Z)','重做 (Ctrl+Shift+Z)':'Redo (Ctrl+Shift+Z)','画笔大小':'Brush Size','硬度':'Hardness',
+'剪贴板中没有图片':'No image in clipboard','图片加载失败':'Failed to load image','已复制选区':'Selection copied','无法读取剪贴板，请用 Ctrl+V':"Can't read clipboard, use Ctrl+V",'点击图层填充颜色':'Click a layer to fill color','点击画布取色':'Click canvas to pick color','点击画布放置文字':'Click canvas to place text','点击画布添加文字':'Click canvas to add text','至少保留一个图层':'Keep at least one layer','请先新建或打开一个文档':'Create or open a document first','请先新建或打开文档':'Create or open a document first','请先选中一个文字图层':'Select a text layer first','需要至少两个可见图层':'At least two visible layers required','缩放画布':'Zoom canvas','平移画布':'Pan canvas','减小 / 增大画笔':'Decrease / increase brush',
+'在画布上拖拽选择裁剪区域，Enter 应用，Esc 取消':'Drag on canvas to select crop area, Enter to apply, Esc to cancel',
+'拖拽创建选区 · 点击选区内部可移动内容 · Delete 删除':'Drag to create a selection · click inside to move · Delete to remove',
+'前景色 → 背景色 线性渐变 · 单击填充前景色':'Foreground → background linear gradient · click to fill foreground',
+'拖拽移动当前图层 · 空格/中键拖动可平移画布':'Drag to move the layer · space/middle-drag to pan',
+'拖拽选择裁剪区域 · Enter 应用 · Esc 取消':'Drag to select crop area · Enter to apply · Esc to cancel',
+'点击画布添加文字 · 双击图层面板中的文字图层可重新编辑':'Click canvas to add text · double-click a text layer to edit',
+'在线PS - 免费在线图片编辑器':'Online PS - Free Online Image Editor',
+'免费 · 无需安装 · 完全在浏览器本地运行':'Free · No install · Runs entirely in your browser',
+'图片不会上传到任何服务器，隐私安全':'Images are never uploaded — privacy safe',
+'自定义尺寸':'Custom size','本地文件 / 拖拽':'Local file / drag & drop','本地运行 · 隐私安全':'Local · Private','无文档':'No document',
+'Ctrl+V 粘贴 · 拖拽图片打开':'Ctrl+V to paste · drag images to open','隐私政策':'Privacy Policy',
+'隐私说明：':'Privacy:','所有编辑均在浏览器本地完成，无需注册，图片不会上传到任何服务器':'All editing runs locally in your browser — no signup, images never uploaded',
+'下载图片（当前为透明背景）':'Download image (currently transparent background)',
+'📖 博客中心':'📖 Blog Center','选择一篇博客，在新标签页打开：':'Pick a post to open in a new tab:','更多博客持续更新中…':'More posts coming soon…',
+'全球养老规划 · RetirePlan':'Global Retirement Planning · RetirePlan',
+'三语版养老规划指南：三支柱体系、税优账户、资产配置、分龄方案，含退休储蓄与反推月存两枚交互测算器。':'A trilingual retirement guide: three-pillar system, tax-advantaged accounts, asset allocation, plans by age, plus two interactive calculators.',
+'移动 / 选区 / 裁剪 / 画笔':'Move / Select / Crop / Brush','油漆桶 / 渐变 / 文字 / 取色器':'Bucket / Gradient / Text / Picker','矩形 / 椭圆 / 直线 / 箭头':'Rect / Ellipse / Line / Arrow',
+'撤销 / 重做':'Undo / Redo','新建 / 打开 / 保存 PNG':'New / Open / Save PNG','复制选区 / 粘贴':'Copy selection / Paste','全选 / 取消选区':'Select all / Deselect','清除选区内容 / 填充选区':'Clear selection / Fill selection',
+'交换前景/背景色':'Swap colors','关于':'About','版本':'Version','功能':'Features','隐私':'Privacy',
+'· 支持图层、画笔、油漆桶、渐变、文字、形状、选区、滤镜、裁剪、撤销重做':'· Layers, brush, paint bucket, gradient, text, shapes, selections, filters, crop, undo/redo',
+'· 支持导入 PNG/JPG/WebP/GIF 等格式，导出 PNG / JPG':'· Import PNG/JPG/WebP/GIF · export PNG / JPG',
+'· 所有处理都在浏览器本地完成，图片不会上传到任何服务器':'· Everything runs locally in your browser; images are never uploaded',
+'· 完全基于 HTML5 Canvas 实现，灵感来自 FreePS / miniPaint / Photopea':'· Built entirely on HTML5 Canvas, inspired by FreePS / miniPaint / Photopea',
+'v1.0 · 免费在线图片编辑器':'v1.0 · Free online image editor','语言':'Language','打开图片':'Open Image','形状':'Shape','选区':'Selection','导出 PNG/JPG':'Export PNG/JPG','松开鼠标以打开图片':'Release to open the image','＋ 新建':'＋ New','缩放 100%':'Zoom 100%','缩放':'Zoom','填充':'Fill','容差':'Tolerance','黑色':'Black','应用':'Apply','取消':'Cancel','添加':'Add','知道了':'Got it','未命名':'Untitled','输入文字…':'Type text…','锁定宽高比':'Lock aspect ratio','锚点决定原内容在新画布中的位置（默认居中）':'The anchor sets where existing content sits on the new canvas (centred by default)','拖拽创建选区 · 点击选区内部拖动内容 · Delete 清除 · Alt+Delete 填充':'Drag to create a selection · drag inside to move content · Delete to clear · Alt+Delete to fill','文字已添加，双击图层可重新编辑':'Text added — double-click the layer to edit','已导出':'Exported','已粘贴图片':'Image pasted','已添加文字图层':'Text layer added','工具:':'Tool:','图层:':'Layer:','移动图层':'Move layer','移动选区':'Move selection','调整图层顺序':'Reorder layers','显示图层':'Show layer','隐藏图层':'Hide layer','显示/隐藏图层':'Show / hide layer','图层编辑':'Layer edit','文字添加':'Add text','形状绘制':'Draw shape','滤镜特效':'Filter','渐变填充':'Gradient fill','画笔与油漆桶':'Brush / bucket','选区与抠图':'Selection / cutout','裁剪与旋转':'Crop / rotate','裁剪区域':'Crop area','旋转图像':'Rotate image','翻转图像':'Flip image','粘贴图层':'Paste layer','打开为图层':'Open as layer','文字图层':'Text layer','图片图层':'Image layer','模糊':'Blur','锐化':'Sharpen','像素化':'Pixelate','怀旧':'Sepia','粗细':'Thickness','橡皮大小':'Eraser size','为新图层':'as a new layer','图片':'Image','三语':'3 languages','理财':'Finance','计算器':'Calculator','删除选区内容':'Delete selection content','空格 / 中键拖动':'Space / middle-drag','适应窗口 / 实际大小':'Fit / actual size','Ctrl+滚轮':'Ctrl+wheel'
+},
+ja:{
+'文件':'ファイル','新建…':'新規…','打开图片…':'画像を開く…','从剪贴板粘贴':'クリップボードから貼り付け','打开为图层…':'レイヤーとして開く…','保存为 PNG':'PNG で保存','保存为 JPG':'JPG で保存','关闭文档':'ドキュメントを閉じる',
+'编辑':'編集','撤销':'元に戻す','重做':'やり直し','复制选区':'選択範囲をコピー','粘贴':'貼り付け','全选':'すべて選択','取消选区':'選択を解除','填充选区':'選択範囲を塗りつぶし','清除选区内容':'選択範囲を消去','清空图层':'レイヤーを消去',
+'图像':'画像','画布大小…':'キャンバスサイズ…','缩放图像…':'画像の拡大縮小…','旋转 90° 顺时针':'90° 時計回りに回転','旋转 90° 逆时针':'90° 反時計回りに回転','水平翻转':'水平方向に反転','垂直翻转':'垂直方向に反転',
+'图层':'レイヤー','新建图层':'新規レイヤー','复制图层':'レイヤーを複製','删除图层':'レイヤーを削除','上移图层':'レイヤーを上へ','下移图层':'レイヤーを下へ','合并可见图层':'表示レイヤーを統合',
+'文字':'テキスト','添加文字…':'テキストを追加…','编辑文字图层…':'テキストレイヤーを編集…',
+'滤镜':'フィルター','灰度':'グレースケール','反色':'階調の反転','二值化':'2値化','怀旧 (Sepia)':'セピア','亮度/对比度…':'明るさ/コントラスト…','色相/饱和度…':'色相/彩度…','模糊…':'ぼかし…','锐化…':'シャープ…','像素化…':'モザイク…',
+'视图':'表示','放大':'拡大','缩小':'縮小','适应窗口':'ウィンドウに合わせる','实际大小 100%':'実際のサイズ 100%',
+'博客':'ブログ','博客中心…':'ブログセンター…','帮助':'ヘルプ','快捷键':'ショートカット','关于在线PS':'オンラインPSについて',
+'移动':'移動','矩形选区':'長方形選択','裁剪':'切り抜き','画笔':'ブラシ','橡皮擦':'消しゴム','油漆桶填充':'塗りつぶし','渐变':'グラデーション','矩形':'長方形','椭圆':'楕円','直线':'直線','箭头':'矢印','取色器':'スポイト',
+'添加文字':'テキストを追加','新建画布':'新規キャンバス','编辑文字':'テキストを編集','画布大小':'キャンバスサイズ','缩放图像':'画像の拡大縮小','亮度':'明るさ','对比度':'コントラスト','饱和度':'彩度','模糊半径':'ぼかし半径','锐化强度':'シャープ強度','像素块大小':'モザイクの大きさ',
+'历史记录':'履歴','模式':'モード','不透明度':'不透明度','新建':'新規','复制':'複製','上移':'上へ','下移':'下へ','合并可见':'表示を統合',
+'正常':'通常','正片叠底':'乗算','滤色':'スクリーン','叠加':'オーバーレイ','变暗':'比較（暗）','变亮':'比較（明）','颜色减淡':'覆い焼きカラー','颜色加深':'焼き込みカラー','强光':'ハードライト','柔光':'ソフトライト','差值':'差の絶対値','排除':'除外',
+'颜色':'色','字号':'フォントサイズ','样式':'スタイル','宽度':'幅','高度':'高さ','比例':'比率','锚点':'基準点','预设':'プリセット','背景':'背景','透明':'透明','白色':'白','内容':'内容','加粗':'太字','常规':'標準','居中':'中央','左对齐':'左揃え','右对齐':'右揃え','水平':'水平','垂直':'垂直',
+'混合模式':'描画モード','图层不透明度':'レイヤーの不透明度','保存':'保存','关闭':'閉じる','创建':'作成','副本':'コピー',
+'前景/背景色 · 点击取色':'描画色/背景色 · クリックで選択','交换前景/背景色 (X)':'描画色と背景色を入れ替え (X)','缩小 (Ctrl+-)':'縮小 (Ctrl+-)','点击恢复 100%':'クリックで 100% に戻す','放大 (Ctrl++)':'拡大 (Ctrl++)','适应窗口 (Ctrl+0)':'ウィンドウに合わせる (Ctrl+0)','实际大小 (Ctrl+1)':'実際のサイズ (Ctrl+1)','撤销 (Ctrl+Z)':'元に戻す (Ctrl+Z)','重做 (Ctrl+Shift+Z)':'やり直し (Ctrl+Shift+Z)','画笔大小':'ブラシサイズ','硬度':'硬さ',
+'剪贴板中没有图片':'クリップボードに画像がありません','图片加载失败':'画像の読み込みに失敗しました','已复制选区':'選択範囲をコピーしました','无法读取剪贴板，请用 Ctrl+V':'クリップボードを読み取れません。Ctrl+V をご利用ください','点击图层填充颜色':'レイヤーをクリックして塗りつぶし','点击画布取色':'キャンバスをクリックして色を取得','点击画布放置文字':'キャンバスをクリックしてテキストを配置','点击画布添加文字':'キャンバスをクリックしてテキストを追加','至少保留一个图层':'レイヤーは最低1つ必要です','请先新建或打开一个文档':'先にドキュメントを作成または開いてください','请先新建或打开文档':'先にドキュメントを作成または開いてください','请先选中一个文字图层':'先にテキストレイヤーを選択してください','需要至少两个可见图层':'表示レイヤーが2つ以上必要です','缩放画布':'キャンバスを拡大縮小','平移画布':'キャンバスを移動','减小 / 增大画笔':'ブラシを縮小 / 拡大',
+'在画布上拖拽选择裁剪区域，Enter 应用，Esc 取消':'キャンバス上でドラッグして切り抜き範囲を選択、Enter で適用、Esc でキャンセル',
+'拖拽创建选区 · 点击选区内部可移动内容 · Delete 删除':'ドラッグで選択範囲を作成 · 内部をクリックで移動 · Delete で削除',
+'前景色 → 背景色 线性渐变 · 单击填充前景色':'描画色 → 背景色 の線形グラデーション · クリックで描画色を塗りつぶし',
+'拖拽移动当前图层 · 空格/中键拖动可平移画布':'ドラッグでレイヤーを移動 · スペース/中ドラッグでキャンバス移動',
+'拖拽选择裁剪区域 · Enter 应用 · Esc 取消':'ドラッグで切り抜き範囲を選択 · Enter で適用 · Esc でキャンセル',
+'点击画布添加文字 · 双击图层面板中的文字图层可重新编辑':'キャンバスをクリックでテキスト追加 · テキストレイヤーをダブルクリックで編集',
+'在线PS - 免费在线图片编辑器':'オンラインPS - 無料オンライン画像エディタ',
+'免费 · 无需安装 · 完全在浏览器本地运行':'無料 · インストール不要 · ブラウザ内で完全動作',
+'图片不会上传到任何服务器，隐私安全':'画像はサーバーに送信されません（プライバシー安全）',
+'自定义尺寸':'カスタムサイズ','本地文件 / 拖拽':'ローカルファイル / ドラッグ&ドロップ','本地运行 · 隐私安全':'ローカル実行 · プライバシー安全','无文档':'ドキュメントなし',
+'Ctrl+V 粘贴 · 拖拽图片打开':'Ctrl+V で貼り付け · 画像をドラッグして開く','隐私政策':'プライバシーポリシー',
+'隐私说明：':'プライバシー：','所有编辑均在浏览器本地完成，无需注册，图片不会上传到任何服务器':'すべての編集はブラウザ内で完結します。登録不要、画像は送信されません',
+'📖 博客中心':'📖 ブログセンター','选择一篇博客，在新标签页打开：':'新しいタブで開く記事を選択：','更多博客持续更新中…':'記事は随時追加予定…',
+'全球养老规划 · RetirePlan':'世界の老後設計 · RetirePlan',
+'三语版养老规划指南：三支柱体系、税优账户、资产配置、分龄方案，含退休储蓄与反推月存两枚交互测算器。':'3言語の老後設計ガイド：3本柱制度、税制優遇口座、資産配分、年代別プラン、貯蓄と積立額の計算ツール2種。',
+'移动 / 选区 / 裁剪 / 画笔':'移動 / 選択 / 切り抜き / ブラシ','油漆桶 / 渐变 / 文字 / 取色器':'塗りつぶし / グラデーション / テキスト / スポイト','矩形 / 椭圆 / 直线 / 箭头':'長方形 / 楕円 / 直線 / 矢印',
+'撤销 / 重做':'元に戻す / やり直し','新建 / 打开 / 保存 PNG':'新規 / 開く / PNG 保存','复制选区 / 粘贴':'選択をコピー / 貼り付け','全选 / 取消选区':'すべて選択 / 選択解除','清除选区内容 / 填充选区':'選択を消去 / 塗りつぶし',
+'交换前景/背景色':'描画色と背景色を入れ替え','关于':'情報','版本':'バージョン','功能':'機能','隐私':'プライバシー',
+'· 支持图层、画笔、油漆桶、渐变、文字、形状、选区、滤镜、裁剪、撤销重做':'· レイヤー、ブラシ、塗りつぶし、グラデーション、テキスト、図形、選択、フィルター、切り抜き、元に戻す',
+'· 支持导入 PNG/JPG/WebP/GIF 等格式，导出 PNG / JPG':'· PNG/JPG/WebP/GIF の読み込み、PNG / JPG の書き出し',
+'· 所有处理都在浏览器本地完成，图片不会上传到任何服务器':'· すべてブラウザ内で処理。画像はサーバーに送信されません',
+'· 完全基于 HTML5 Canvas 实现，灵感来自 FreePS / miniPaint / Photopea':'· HTML5 Canvas で実装。FreePS / miniPaint / Photopea にインスパイア',
+'v1.0 · 免费在线图片编辑器':'v1.0 · 無料オンライン画像エディタ','语言':'言語','打开图片':'画像を開く','形状':'図形','选区':'選択','导出 PNG/JPG':'PNG/JPG を書き出し','松开鼠标以打开图片':'マウスを離して画像を開く','＋ 新建':'＋ 新規','缩放 100%':'ズーム 100%','缩放':'ズーム','填充':'塗りつぶし','容差':'許容値','黑色':'黒','应用':'適用','取消':'キャンセル','添加':'追加','知道了':'了解','未命名':'名称未設定','输入文字…':'テキストを入力…','锁定宽高比':'縦横比を固定','锚点决定原内容在新画布中的位置（默认居中）':'基準点は既存の内容を新しいキャンバス上のどこに置くかを決めます（既定は中央）','拖拽创建选区 · 点击选区内部拖动内容 · Delete 清除 · Alt+Delete 填充':'ドラッグで選択範囲を作成 · 内部をドラッグで内容を移動 · Delete で消去 · Alt+Delete で塗りつぶし','文字已添加，双击图层可重新编辑':'テキストを追加しました。レイヤーをダブルクリックで編集','已导出':'書き出しました','已粘贴图片':'画像を貼り付けました','已添加文字图层':'テキストレイヤーを追加','工具:':'ツール:','图层:':'レイヤー:','移动图层':'レイヤーを移動','移动选区':'選択範囲を移動','调整图层顺序':'レイヤー順序を変更','显示图层':'レイヤーを表示','隐藏图层':'レイヤーを非表示','显示/隐藏图层':'レイヤーの表示/非表示','图层编辑':'レイヤー編集','文字添加':'テキスト追加','形状绘制':'図形を描画','滤镜特效':'フィルター','渐变填充':'グラデーション塗り','画笔与油漆桶':'ブラシ・塗りつぶし','选区与抠图':'選択・切り抜き','裁剪与旋转':'切り抜き・回転','裁剪区域':'切り抜き範囲','旋转图像':'画像を回転','翻转图像':'画像を反転','粘贴图层':'レイヤーを貼り付け','打开为图层':'レイヤーとして開く','文字图层':'テキストレイヤー','图片图层':'画像レイヤー','模糊':'ぼかし','锐化':'シャープ','像素化':'モザイク','怀旧':'セピア','粗细':'太さ','橡皮大小':'消しゴムサイズ','为新图层':'新規レイヤーとして','图片':'画像','三语':'3言語','理财':'資産','计算器':'計算ツール','删除选区内容':'選択範囲を削除','空格 / 中键拖动':'スペース / 中ドラッグ','适应窗口 / 实际大小':'ウィンドウに合わせる / 実際のサイズ','Ctrl+滚轮':'Ctrl+ホイール'
+},
+ko:{
+'文件':'파일','新建…':'새로 만들기…','打开图片…':'이미지 열기…','从剪贴板粘贴':'클립보드에서 붙여넣기','打开为图层…':'레이어로 열기…','保存为 PNG':'PNG로 저장','保存为 JPG':'JPG로 저장','关闭文档':'문서 닫기',
+'编辑':'편집','撤销':'실행 취소','重做':'다시 실행','复制选区':'선택 영역 복사','粘贴':'붙여넣기','全选':'모두 선택','取消选区':'선택 해제','填充选区':'선택 영역 채우기','清除选区内容':'선택 영역 지우기','清空图层':'레이어 비우기',
+'图像':'이미지','画布大小…':'캔버스 크기…','缩放图像…':'이미지 크기 조절…','旋转 90° 顺时针':'시계 방향 90° 회전','旋转 90° 逆时针':'반시계 방향 90° 회전','水平翻转':'가로 뒤집기','垂直翻转':'세로 뒤집기',
+'图层':'레이어','新建图层':'새 레이어','复制图层':'레이어 복제','删除图层':'레이어 삭제','上移图层':'레이어 위로','下移图层':'레이어 아래로','合并可见图层':'보이는 레이어 병합',
+'文字':'텍스트','添加文字…':'텍스트 추가…','编辑文字图层…':'텍스트 레이어 편집…',
+'滤镜':'필터','灰度':'그레이스케일','反色':'색 반전','二值化':'이진화','怀旧 (Sepia)':'세피아','亮度/对比度…':'밝기/대비…','色相/饱和度…':'색조/채도…','模糊…':'흐림…','锐化…':'선명하게…','像素化…':'픽셀화…',
+'视图':'보기','放大':'확대','缩小':'축소','适应窗口':'창에 맞추기','实际大小 100%':'실제 크기 100%',
+'博客':'블로그','博客中心…':'블로그 센터…','帮助':'도움말','快捷键':'단축키','关于在线PS':'온라인PS 정보',
+'移动':'이동','矩形选区':'사각형 선택','裁剪':'자르기','画笔':'브러시','橡皮擦':'지우개','油漆桶填充':'페인트통','渐变':'그라디언트','矩形':'사각형','椭圆':'타원','直线':'직선','箭头':'화살표','取色器':'색상 추출기',
+'添加文字':'텍스트 추가','新建画布':'새 캔버스','编辑文字':'텍스트 편집','画布大小':'캔버스 크기','缩放图像':'이미지 크기 조절','亮度':'밝기','对比度':'대비','饱和度':'채도','模糊半径':'흐림 반경','锐化强度':'선명도 강도','像素块大小':'픽셀 크기',
+'历史记录':'기록','模式':'모드','不透明度':'불투명도','新建':'새로 만들기','复制':'복제','上移':'위로','下移':'아래로','合并可见':'보이는 항목 병합',
+'正常':'보통','正片叠底':'곱하기','滤色':'스크린','叠加':'오버레이','变暗':'어둡게','变亮':'밝게','颜色减淡':'색상 닷지','颜色加深':'색상 번','强光':'하드 라이트','柔光':'소프트 라이트','差值':'차이','排除':'제외',
+'颜色':'색상','字号':'글자 크기','样式':'스타일','宽度':'너비','高度':'높이','比例':'비율','锚点':'기준점','预设':'사전 설정','背景':'배경','透明':'투명','白色':'흰색','内容':'내용','加粗':'굵게','常规':'보통','居中':'가운데','左对齐':'왼쪽 정렬','右对齐':'오른쪽 정렬','水平':'가로','垂直':'세로',
+'混合模式':'혼합 모드','图层不透明度':'레이어 불투명도','保存':'저장','关闭':'닫기','创建':'만들기','副本':'사본',
+'前景/背景色 · 点击取色':'전경/배경색 · 클릭하여 선택','交换前景/背景色 (X)':'색상 교체 (X)','缩小 (Ctrl+-)':'축소 (Ctrl+-)','点击恢复 100%':'클릭하여 100%로 초기화','放大 (Ctrl++)':'확대 (Ctrl++)','适应窗口 (Ctrl+0)':'창에 맞추기 (Ctrl+0)','实际大小 (Ctrl+1)':'실제 크기 (Ctrl+1)','撤销 (Ctrl+Z)':'실행 취소 (Ctrl+Z)','重做 (Ctrl+Shift+Z)':'다시 실행 (Ctrl+Shift+Z)','画笔大小':'브러시 크기','硬度':'경도',
+'剪贴板中没有图片':'클립보드에 이미지가 없습니다','图片加载失败':'이미지 로드 실패','已复制选区':'선택 영역을 복사했습니다','无法读取剪贴板，请用 Ctrl+V':'클립보드를 읽을 수 없습니다. Ctrl+V를 사용하세요','点击图层填充颜色':'레이어를 클릭하여 색 채우기','点击画布取色':'캔버스를 클릭하여 색 추출','点击画布放置文字':'캔버스를 클릭하여 텍스트 배치','点击画布添加文字':'캔버스를 클릭하여 텍스트 추가','至少保留一个图层':'레이어가 최소 1개 필요합니다','请先新建或打开一个文档':'먼저 문서를 만들거나 여세요','请先新建或打开文档':'먼저 문서를 만들거나 여세요','请先选中一个文字图层':'먼저 텍스트 레이어를 선택하세요','需要至少两个可见图层':'보이는 레이어가 2개 이상 필요합니다','缩放画布':'캔버스 확대/축소','平移画布':'캔버스 이동','减小 / 增大画笔':'브러시 축소 / 확대',
+'在画布上拖拽选择裁剪区域，Enter 应用，Esc 取消':'캔버스에서 드래그하여 자를 영역 선택, Enter 적용, Esc 취소',
+'拖拽创建选区 · 点击选区内部可移动内容 · Delete 删除':'드래그로 선택 영역 생성 · 내부 클릭으로 이동 · Delete 삭제',
+'前景色 → 背景色 线性渐变 · 单击填充前景色':'전경색 → 배경색 선형 그라디언트 · 클릭하여 전경색 채우기',
+'拖拽移动当前图层 · 空格/中键拖动可平移画布':'드래그로 레이어 이동 · 스페이스/휠 클릭 드래그로 캔버스 이동',
+'拖拽选择裁剪区域 · Enter 应用 · Esc 取消':'드래그로 자를 영역 선택 · Enter 적용 · Esc 취소',
+'点击画布添加文字 · 双击图层面板中的文字图层可重新编辑':'캔버스 클릭으로 텍스트 추가 · 텍스트 레이어 더블클릭으로 편집',
+'在线PS - 免费在线图片编辑器':'온라인PS - 무료 온라인 이미지 편집기',
+'免费 · 无需安装 · 完全在浏览器本地运行':'무료 · 설치 불필요 · 브라우저에서 완전 실행',
+'图片不会上传到任何服务器，隐私安全':'이미지는 서버에 업로드되지 않습니다 — 개인정보 안전',
+'自定义尺寸':'사용자 지정 크기','本地文件 / 拖拽':'로컬 파일 / 드래그 앤 드롭','本地运行 · 隐私安全':'로컬 실행 · 개인정보 안전','无文档':'문서 없음',
+'Ctrl+V 粘贴 · 拖拽图片打开':'Ctrl+V 붙여넣기 · 이미지 드래그로 열기','隐私政策':'개인정보 처리방침',
+'隐私说明：':'개인정보：','所有编辑均在浏览器本地完成，无需注册，图片不会上传到任何服务器':'모든 편집은 브라우저에서 완료됩니다. 가입 불필요, 이미지 업로드 없음',
+'📖 博客中心':'📖 블로그 센터','选择一篇博客，在新标签页打开：':'새 탭에서 열 글을 선택하세요：','更多博客持续更新中…':'더 많은 글이 계속 추가됩니다…',
+'全球养老规划 · RetirePlan':'글로벌 노후 설계 · RetirePlan',
+'三语版养老规划指南：三支柱体系、税优账户、资产配置、分龄方案，含退休储蓄与反推月存两枚交互测算器。':'3개 언어 노후 설계 가이드: 3층 구조, 세제 혜택 계좌, 자산 배분, 연령별 플랜, 저축·월 납입 계산기 2종.',
+'移动 / 选区 / 裁剪 / 画笔':'이동 / 선택 / 자르기 / 브러시','油漆桶 / 渐变 / 文字 / 取色器':'페인트통 / 그라디언트 / 텍스트 / 색 추출','矩形 / 椭圆 / 直线 / 箭头':'사각형 / 타원 / 직선 / 화살표',
+'撤销 / 重做':'실행 취소 / 다시 실행','新建 / 打开 / 保存 PNG':'새로 만들기 / 열기 / PNG 저장','复制选区 / 粘贴':'선택 복사 / 붙여넣기','全选 / 取消选区':'모두 선택 / 선택 해제','清除选区内容 / 填充选区':'선택 지우기 / 채우기',
+'交换前景/背景色':'색상 교체','关于':'정보','版本':'버전','功能':'기능','隐私':'개인정보',
+'· 支持图层、画笔、油漆桶、渐变、文字、形状、选区、滤镜、裁剪、撤销重做':'· 레이어, 브러시, 페인트통, 그라디언트, 텍스트, 도형, 선택, 필터, 자르기, 실행 취소',
+'· 支持导入 PNG/JPG/WebP/GIF 等格式，导出 PNG / JPG':'· PNG/JPG/WebP/GIF 가져오기, PNG / JPG 내보내기',
+'· 所有处理都在浏览器本地完成，图片不会上传到任何服务器':'· 모든 처리는 브라우저에서 완료. 이미지는 업로드되지 않습니다',
+'· 完全基于 HTML5 Canvas 实现，灵感来自 FreePS / miniPaint / Photopea':'· HTML5 Canvas 기반 구현, FreePS / miniPaint / Photopea에서 영감',
+'v1.0 · 免费在线图片编辑器':'v1.0 · 무료 온라인 이미지 편집기','语言':'언어','打开图片':'이미지 열기','形状':'도형','选区':'선택','导出 PNG/JPG':'PNG/JPG 내보내기','松开鼠标以打开图片':'마우스를 놓아 이미지 열기','＋ 新建':'＋ 새로 만들기','缩放 100%':'확대 100%','缩放':'확대/축소','填充':'채우기','容差':'허용치','黑色':'검정','应用':'적용','取消':'취소','添加':'추가','知道了':'확인','未命名':'제목 없음','输入文字…':'텍스트 입력…','锁定宽高比':'가로세로 비율 고정','锚点决定原内容在新画布中的位置（默认居中）':'기준점은 기존 내용이 새 캔버스에서 놓일 위치를 정합니다(기본 가운데)','拖拽创建选区 · 点击选区内部拖动内容 · Delete 清除 · Alt+Delete 填充':'드래그로 선택 영역 생성 · 내부 드래그로 내용 이동 · Delete 지우기 · Alt+Delete 채우기','文字已添加，双击图层可重新编辑':'텍스트를 추가했습니다. 레이어를 더블클릭하여 편집','已导出':'내보냈습니다','已粘贴图片':'이미지를 붙여넣었습니다','已添加文字图层':'텍스트 레이어 추가됨','工具:':'도구:','图层:':'레이어:','移动图层':'레이어 이동','移动选区':'선택 영역 이동','调整图层顺序':'레이어 순서 변경','显示图层':'레이어 표시','隐藏图层':'레이어 숨기기','显示/隐藏图层':'레이어 표시/숨기기','图层编辑':'레이어 편집','文字添加':'텍스트 추가','形状绘制':'도형 그리기','滤镜特效':'필터','渐变填充':'그라디언트 채우기','画笔与油漆桶':'브러시·페인트통','选区与抠图':'선택·누끼','裁剪与旋转':'자르기·회전','裁剪区域':'자를 영역','旋转图像':'이미지 회전','翻转图像':'이미지 뒤집기','粘贴图层':'레이어 붙여넣기','打开为图层':'레이어로 열기','文字图层':'텍스트 레이어','图片图层':'이미지 레이어','模糊':'흐림','锐化':'선명하게','像素化':'픽셀화','怀旧':'세피아','粗细':'두께','橡皮大小':'지우개 크기','为新图层':'새 레이어로','图片':'이미지','三语':'3개 언어','理财':'재테크','计算器':'계산기','删除选区内容':'선택 영역 삭제','空格 / 中键拖动':'스페이스 / 휠 클릭 드래그','适应窗口 / 实际大小':'창에 맞추기 / 실제 크기','Ctrl+滚轮':'Ctrl+휠'
+},
+es:{
+'文件':'Archivo','新建…':'Nuevo…','打开图片…':'Abrir imagen…','从剪贴板粘贴':'Pegar del portapapeles','打开为图层…':'Abrir como capa…','保存为 PNG':'Guardar como PNG','保存为 JPG':'Guardar como JPG','关闭文档':'Cerrar documento',
+'编辑':'Editar','撤销':'Deshacer','重做':'Rehacer','复制选区':'Copiar selección','粘贴':'Pegar','全选':'Seleccionar todo','取消选区':'Deseleccionar','填充选区':'Rellenar selección','清除选区内容':'Borrar selección','清空图层':'Vaciar capa',
+'图像':'Imagen','画布大小…':'Tamaño del lienzo…','缩放图像…':'Escalar imagen…','旋转 90° 顺时针':'Rotar 90° horario','旋转 90° 逆时针':'Rotar 90° antihorario','水平翻转':'Voltear horizontal','垂直翻转':'Voltear vertical',
+'图层':'Capa','新建图层':'Nueva capa','复制图层':'Duplicar capa','删除图层':'Eliminar capa','上移图层':'Subir capa','下移图层':'Bajar capa','合并可见图层':'Combinar visibles',
+'文字':'Texto','添加文字…':'Añadir texto…','编辑文字图层…':'Editar capa de texto…',
+'滤镜':'Filtro','灰度':'Escala de grises','反色':'Invertir','二值化':'Umbral','怀旧 (Sepia)':'Sepia','亮度/对比度…':'Brillo/Contraste…','色相/饱和度…':'Tono/Saturación…','模糊…':'Desenfoque…','锐化…':'Enfocar…','像素化…':'Pixelar…',
+'视图':'Ver','放大':'Acercar','缩小':'Alejar','适应窗口':'Ajustar a ventana','实际大小 100%':'Tamaño real 100%',
+'博客':'Blog','博客中心…':'Centro de blogs…','帮助':'Ayuda','快捷键':'Atajos','关于在线PS':'Acerca de Online PS',
+'移动':'Mover','矩形选区':'Selección rect.','裁剪':'Recortar','画笔':'Pincel','橡皮擦':'Borrador','油漆桶填充':'Relleno','渐变':'Degradado','矩形':'Rectángulo','椭圆':'Elipse','直线':'Línea','箭头':'Flecha','取色器':'Cuentagotas',
+'添加文字':'Añadir texto','新建画布':'Nuevo lienzo','编辑文字':'Editar texto','画布大小':'Tamaño del lienzo','缩放图像':'Escalar imagen','亮度':'Brillo','对比度':'Contraste','饱和度':'Saturación','模糊半径':'Radio de desenfoque','锐化强度':'Intensidad de enfoque','像素块大小':'Tamaño de píxel',
+'历史记录':'Historial','模式':'Modo','不透明度':'Opacidad','新建':'Nuevo','复制':'Duplicar','上移':'Subir','下移':'Bajar','合并可见':'Combinar visibles',
+'正常':'Normal','正片叠底':'Multiplicar','滤色':'Trama','叠加':'Superponer','变暗':'Oscurecer','变亮':'Aclarar','颜色减淡':'Sobreexponer color','颜色加深':'Subexponer color','强光':'Luz fuerte','柔光':'Luz suave','差值':'Diferencia','排除':'Exclusión',
+'颜色':'Color','字号':'Tamaño','样式':'Estilo','宽度':'Anchura','高度':'Altura','比例':'Proporción','锚点':'Ancla','预设':'Preajuste','背景':'Fondo','透明':'Transparente','白色':'Blanco','内容':'Contenido','加粗':'Negrita','常规':'Normal','居中':'Centrar','左对齐':'Alinear izquierda','右对齐':'Alinear derecha','水平':'Horizontal','垂直':'Vertical',
+'混合模式':'Modo de fusión','图层不透明度':'Opacidad de capa','保存':'Guardar','关闭':'Cerrar','创建':'Crear','副本':'Copia',
+'前景/背景色 · 点击取色':'Color frontal/fondo · clic para elegir','交换前景/背景色 (X)':'Intercambiar colores (X)','缩小 (Ctrl+-)':'Alejar (Ctrl+-)','点击恢复 100%':'Clic para volver al 100%','放大 (Ctrl++)':'Acercar (Ctrl++)','适应窗口 (Ctrl+0)':'Ajustar a ventana (Ctrl+0)','实际大小 (Ctrl+1)':'Tamaño real (Ctrl+1)','撤销 (Ctrl+Z)':'Deshacer (Ctrl+Z)','重做 (Ctrl+Shift+Z)':'Rehacer (Ctrl+Shift+Z)','画笔大小':'Tamaño del pincel','硬度':'Dureza',
+'剪贴板中没有图片':'No hay imagen en el portapapeles','图片加载失败':'Error al cargar la imagen','已复制选区':'Selección copiada','无法读取剪贴板，请用 Ctrl+V':'No se puede leer el portapapeles, use Ctrl+V','点击图层填充颜色':'Haga clic en una capa para rellenar','点击画布取色':'Haga clic en el lienzo para elegir color','点击画布放置文字':'Haga clic en el lienzo para colocar texto','点击画布添加文字':'Haga clic en el lienzo para añadir texto','至少保留一个图层':'Conserve al menos una capa','请先新建或打开一个文档':'Cree o abra un documento primero','请先新建或打开文档':'Cree o abra un documento primero','请先选中一个文字图层':'Seleccione una capa de texto primero','需要至少两个可见图层':'Se necesitan al menos dos capas visibles','缩放画布':'Zoom del lienzo','平移画布':'Desplazar lienzo','减小 / 增大画笔':'Reducir / aumentar pincel',
+'在画布上拖拽选择裁剪区域，Enter 应用，Esc 取消':'Arrastre en el lienzo para seleccionar el área, Enter para aplicar, Esc para cancelar',
+'拖拽创建选区 · 点击选区内部可移动内容 · Delete 删除':'Arrastre para crear selección · clic dentro para mover · Delete para borrar',
+'前景色 → 背景色 线性渐变 · 单击填充前景色':'Degradado lineal frontal → fondo · clic para rellenar con el frontal',
+'拖拽移动当前图层 · 空格/中键拖动可平移画布':'Arrastre para mover la capa · espacio/botón central para desplazar',
+'拖拽选择裁剪区域 · Enter 应用 · Esc 取消':'Arrastre para seleccionar el recorte · Enter aplica · Esc cancela',
+'点击画布添加文字 · 双击图层面板中的文字图层可重新编辑':'Clic en el lienzo para añadir texto · doble clic en una capa de texto para editar',
+'在线PS - 免费在线图片编辑器':'Online PS - Editor de imágenes gratis',
+'免费 · 无需安装 · 完全在浏览器本地运行':'Gratis · Sin instalación · Todo en tu navegador',
+'图片不会上传到任何服务器，隐私安全':'Las imágenes nunca se suben — privacidad segura',
+'自定义尺寸':'Tamaño personalizado','本地文件 / 拖拽':'Archivo local / arrastrar','本地运行 · 隐私安全':'Local · Privado','无文档':'Sin documento',
+'Ctrl+V 粘贴 · 拖拽图片打开':'Ctrl+V para pegar · arrastre imágenes','隐私政策':'Política de privacidad',
+'隐私说明：':'Privacidad：','所有编辑均在浏览器本地完成，无需注册，图片不会上传到任何服务器':'Toda la edición ocurre en tu navegador: sin registro, sin subir imágenes',
+'📖 博客中心':'📖 Centro de blogs','选择一篇博客，在新标签页打开：':'Elige un artículo para abrir en una pestaña nueva：','更多博客持续更新中…':'Más artículos próximamente…',
+'全球养老规划 · RetirePlan':'Planificación de la jubilación · RetirePlan',
+'三语版养老规划指南：三支柱体系、税优账户、资产配置、分龄方案，含退休储蓄与反推月存两枚交互测算器。':'Guía de jubilación en tres idiomas: sistema de tres pilares, cuentas con ventaja fiscal, asignación de activos y dos calculadoras interactivas.',
+'移动 / 选区 / 裁剪 / 画笔':'Mover / Selección / Recorte / Pincel','油漆桶 / 渐变 / 文字 / 取色器':'Relleno / Degradado / Texto / Cuentagotas','矩形 / 椭圆 / 直线 / 箭头':'Rect. / Elipse / Línea / Flecha',
+'撤销 / 重做':'Deshacer / Rehacer','新建 / 打开 / 保存 PNG':'Nuevo / Abrir / Guardar PNG','复制选区 / 粘贴':'Copiar / Pegar','全选 / 取消选区':'Todo / Deseleccionar','清除选区内容 / 填充选区':'Borrar / Rellenar',
+'交换前景/背景色':'Intercambiar colores','关于':'Acerca de','版本':'Versión','功能':'Funciones','隐私':'Privacidad',
+'· 支持图层、画笔、油漆桶、渐变、文字、形状、选区、滤镜、裁剪、撤销重做':'· Capas, pincel, relleno, degradado, texto, formas, selección, filtros, recorte, deshacer',
+'· 支持导入 PNG/JPG/WebP/GIF 等格式，导出 PNG / JPG':'· Importa PNG/JPG/WebP/GIF · exporta PNG / JPG',
+'· 所有处理都在浏览器本地完成，图片不会上传到任何服务器':'· Todo se procesa en tu navegador; las imágenes no se suben',
+'· 完全基于 HTML5 Canvas 实现，灵感来自 FreePS / miniPaint / Photopea':'· Hecho con HTML5 Canvas, inspirado en FreePS / miniPaint / Photopea',
+'v1.0 · 免费在线图片编辑器':'v1.0 · Editor de imágenes online gratis','语言':'Idioma','打开图片':'Abrir imagen','形状':'Forma','选区':'Selección','导出 PNG/JPG':'Exportar PNG/JPG','松开鼠标以打开图片':'Suelte para abrir la imagen','＋ 新建':'＋ Nuevo','缩放 100%':'Zoom 100%','缩放':'Zoom','填充':'Relleno','容差':'Tolerancia','黑色':'Negro','应用':'Aplicar','取消':'Cancelar','添加':'Añadir','知道了':'Entendido','未命名':'Sin título','输入文字…':'Escribe texto…','锁定宽高比':'Bloquear proporción','锚点决定原内容在新画布中的位置（默认居中）':'El ancla define dónde queda el contenido en el nuevo lienzo (centrado por defecto)','拖拽创建选区 · 点击选区内部拖动内容 · Delete 清除 · Alt+Delete 填充':'Arrastre para crear selección · arrastre dentro para mover · Delete borra · Alt+Delete rellena','文字已添加，双击图层可重新编辑':'Texto añadido: doble clic en la capa para editar','已导出':'Exportado','已粘贴图片':'Imagen pegada','已添加文字图层':'Capa de texto añadida','工具:':'Herramienta:','图层:':'Capa:','移动图层':'Mover capa','移动选区':'Mover selección','调整图层顺序':'Reordenar capas','显示图层':'Mostrar capa','隐藏图层':'Ocultar capa','显示/隐藏图层':'Mostrar / ocultar capa','图层编辑':'Edición de capa','文字添加':'Añadir texto','形状绘制':'Dibujar forma','滤镜特效':'Filtro','渐变填充':'Relleno degradado','画笔与油漆桶':'Pincel / relleno','选区与抠图':'Selección / recorte','裁剪与旋转':'Recorte / rotación','裁剪区域':'Área de recorte','旋转图像':'Rotar imagen','翻转图像':'Voltear imagen','粘贴图层':'Pegar capa','打开为图层':'Abrir como capa','文字图层':'Capa de texto','图片图层':'Capa de imagen','模糊':'Desenfoque','锐化':'Enfocar','像素化':'Pixelar','怀旧':'Sepia','粗细':'Grosor','橡皮大小':'Tamaño del borrador','为新图层':'como capa nueva','图片':'Imagen','三语':'3 idiomas','理财':'Finanzas','计算器':'Calculadora','删除选区内容':'Eliminar selección','空格 / 中键拖动':'Espacio / arrastrar central','适应窗口 / 实际大小':'Ajustar / tamaño real','Ctrl+滚轮':'Ctrl+rueda'
+}
+};
+/* 富文本区块(含标签) */
+const I18N_HTML={
+zh:{'welcome.desc':'在线PS 是一款<b>免费在线图片编辑器</b>（网页版 PS）：支持<b>图层</b>、<b>滤镜</b>、<b>抠图与选区</b>、<b>加文字</b>、<b>裁剪旋转</b>、<b>调色</b>、形状与渐变，一键导出 <b>PNG / JPG</b>。无需安装 Photoshop 或注册账号，浏览器打开即用，图片全程本地处理不上传。'},
+en:{'welcome.desc':'Online PS is a <b>free online image editor</b> (a web-based PS): <b>layers</b>, <b>filters</b>, <b>cutout &amp; selection</b>, <b>text</b>, <b>crop &amp; rotate</b>, <b>color grading</b>, shapes and gradients, with one-click <b>PNG / JPG</b> export. No Photoshop install, no signup — everything runs locally in your browser.'},
+ja:{'welcome.desc':'オンラインPS は<b>無料のオンライン画像エディタ</b>（Web 版 PS）です。<b>レイヤー</b>、<b>フィルター</b>、<b>切り抜き・選択</b>、<b>テキスト</b>、<b>トリミング・回転</b>、<b>色調整</b>、図形とグラデーションに対応し、<b>PNG / JPG</b> を書き出せます。インストールも登録も不要、すべてブラウザ内で処理されます。'},
+ko:{'welcome.desc':'온라인PS는 <b>무료 온라인 이미지 편집기</b>(웹 버전 PS)입니다. <b>레이어</b>, <b>필터</b>, <b>누끼·선택</b>, <b>텍스트</b>, <b>자르기·회전</b>, <b>색 보정</b>, 도형과 그라디언트를 지원하며 <b>PNG / JPG</b>로 내보낼 수 있습니다. 설치나 가입 없이 브라우저에서 바로 사용하세요.'},
+es:{'welcome.desc':'Online PS es un <b>editor de imágenes online gratis</b> (PS en el navegador): <b>capas</b>, <b>filtros</b>, <b>recorte y selección</b>, <b>texto</b>, <b>recortar y rotar</b>, <b>ajuste de color</b>, formas y degradados, con exportación a <b>PNG / JPG</b> en un clic. Sin instalar Photoshop ni registrarse — todo se procesa localmente.'}
+};
+/* 动态文本前缀(含变量) */
+const TR_PREFIX={
+en:{'图层: ':'Layer: ','工具: ':'Tool: ','工具: ':'Tool: ','已添加文字图层':'Text layer added','提示':'Tip'},
+ja:{'图层: ':'レイヤー: ','工具: ':'ツール: ','工具: ':'ツール: ','已添加文字图层':'テキストレイヤーを追加しました','提示':'ヒント'},
+ko:{'图层: ':'레이어: ','工具: ':'도구: ','工具: ':'도구: ','已添加文字图层':'텍스트 레이어가 추가되었습니다','提示':'팁'},
+es:{'图层: ':'Capa: ','工具: ':'Herramienta: ','工具: ':'Herramienta: ','已添加文字图层':'Capa de texto añadida','提示':'Consejo'}
+};
+let LANG='zh';
+function tr(s){
+  if(!s||LANG==='zh') return s;
+  const d=I18N[LANG]; if(!d) return s;
+  const k=String(s).trim();
+  if(d[k]!==undefined) return String(s).replace(k,d[k]);
+  const pf=TR_PREFIX[LANG]||{};
+  for(const p in pf){ if(k.indexOf(p)===0) return String(s).replace(p,pf[p]); }
+  return s;
+}
+const TR_ATTRS=['title','placeholder','aria-label','alt'];
+function trEl(n){
+  if(!n) return;
+  if(n.nodeType===3){ const v=n.nodeValue; if(v&&v.trim()){ const t=tr(v); if(t!==v) n.nodeValue=t; } return; }
+  if(n.nodeType!==1) return;
+  for(let i=0;i<TR_ATTRS.length;i++){ const a=TR_ATTRS[i]; const v=n.getAttribute&&n.getAttribute(a); if(v){ const t=tr(v); if(t!==v) n.setAttribute(a,t); } }
+  if(n.dataset&&n.dataset.i18nHtml){ const key=n.dataset.i18nHtml; const h=(I18N_HTML[LANG]||{})[key]; if(h) n.innerHTML=h; else if(n.dataset.zhHtml) n.innerHTML=n.dataset.zhHtml; }
+  if(n.dataset&&n.dataset.i18n){ const key=n.dataset.i18n; const d=I18N[LANG]||{}; if(d[key]!==undefined) n.textContent=d[key]; else if(n.dataset.zhText!==undefined) n.textContent=n.dataset.zhText; }
+  for(let c=n.firstChild;c;c=c.nextSibling) trEl(c);
+}
+function applyLang(){
+  document.documentElement.lang = LANG==='zh'?'zh-CN':LANG;
+  trEl(document.body);
+  const btn=document.getElementById('lang-cur'); if(btn){ const L=LANGS.filter(l=>l[0]===LANG)[0]; if(L) btn.textContent=L[1]; }
+  document.querySelectorAll('#lang-drop .mi').forEach(m=>m.classList.toggle('on', m.dataset.lang===LANG));
+  try{localStorage.setItem('ps_lang',LANG);}catch(e){}
+}
+function setLang(l){ if(l!=='zh'&&!I18N[l]) return; LANG=l; applyLang(); }
+try{
+  new MutationObserver(function(recs){
+    if(LANG==='zh') return;
+    for(let i=0;i<recs.length;i++){
+      const r=recs[i];
+      if(r.type==='characterData'){ trEl(r.target); }
+      else { for(let j=0;j<r.addedNodes.length;j++) trEl(r.addedNodes[j]); }
+    }
+  }).observe(document.documentElement,{childList:true,subtree:true,characterData:true});
+}catch(e){}
+(function(){
+  let l=null;
+  try{ l=localStorage.getItem('ps_lang'); }catch(e){}
+  if(!l){ try{ const q=new URLSearchParams(location.search).get('lang'); if(q&&(q==='zh'||I18N[q])) l=q; }catch(e){} }
+  if(!l){ const n=(navigator.language||'zh').toLowerCase(); l = n.indexOf('zh')===0?'zh' : n.indexOf('ja')===0?'ja' : n.indexOf('ko')===0?'ko' : n.indexOf('es')===0?'es' : 'en'; }
+  if(l&&l!=='zh'){ LANG=l; if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',applyLang); else applyLang(); }
+})();
+/* ==================== /i18n ==================== */
+
+
 /* ================================================================
    在线PS · 单文件实现
    核心: Canvas 2D 图层合成 + 指针绘制 + 纯函数滤镜/填充
@@ -1452,6 +1690,27 @@ function buildMenubar(){
     });
     bar.appendChild(btn);
   });
+
+  (function(){
+    const lb=document.createElement('div');
+    lb.className='menu-btn'; lb.id='lang-btn'; lb.title='语言 / Language';
+    lb.innerHTML='<span style="font-size:13px">\u{1F310}</span><span id="lang-cur" style="font-weight:600;font-size:12.5px">\u4E2D\u6587</span><span class="caret">\u25BE</span>';
+    const dd=document.createElement('div'); dd.className='dropdown'; dd.id='lang-drop';
+    LANGS.forEach(function(L){
+      const mi=document.createElement('div'); mi.className='mi'; mi.dataset.lang=L[0];
+      mi.innerHTML='<span>'+L[1]+'</span>'+(L[0]==='zh'?'<span class="accel">\u9ED8\u8BA4</span>':'');
+      mi.addEventListener('click', function(e){ e.stopPropagation(); setLang(L[0]); lb.classList.remove('open'); });
+      dd.appendChild(mi);
+    });
+    lb.appendChild(dd);
+    lb.addEventListener('click', function(e){
+      e.stopPropagation();
+      document.querySelectorAll('.menu-btn.open').forEach(function(b){ if(b!==lb) b.classList.remove('open'); });
+      lb.classList.toggle('open');
+    });
+    bar.appendChild(lb);
+  })();
+
   document.addEventListener('click', ()=>document.querySelectorAll('.menu-btn.open').forEach(b=>b.classList.remove('open')));
   const right = document.createElement('div');
   right.id='menubar-right';
