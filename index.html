@@ -130,6 +130,8 @@ input[type=color]::-webkit-color-swatch{border:1px solid var(--line2);border-rad
 .wfeat{font-size:12px;color:var(--txt-dim);background:var(--bg2);border:1px solid var(--line);padding:4px 12px;border-radius:20px}
 .wsafe{font-size:12px;color:var(--txt-dark)}
 .wsafe b{color:var(--txt-dim);font-weight:600}
+.wlink{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--txt-dim);text-decoration:none;padding:6px 11px;border:1px solid var(--line2);border-radius:8px;background:var(--bg2);transition:border-color .15s,color .15s}
+.wlink:hover{border-color:var(--accent);color:var(--txt)}
 .wdrop{position:absolute;inset:0;z-index:25;display:none;align-items:center;justify-content:center;background:rgba(13,153,255,.12);border:3px dashed var(--accent);border-radius:8px;pointer-events:none}
 .wdrop.show{display:flex}
 .wdrop span{font-size:20px;color:var(--accent-hi);background:rgba(0,0,0,.55);padding:12px 26px;border-radius:10px}
@@ -271,6 +273,15 @@ input[type=color]::-webkit-color-swatch{border:1px solid var(--line2);border-rad
           </div>
           <div class="wsafe"><b>隐私说明：</b>所有编辑均在浏览器本地完成，无需注册，图片不会上传到任何服务器</div>
           <div style="margin-top:14px;font-size:12px"><a href="privacy.html" style="color:var(--txt-dim);text-decoration:none">隐私政策</a></div>
+          <div class="wlinks" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line2)">
+            <div style="font-size:11px;color:var(--txt-dim);margin-bottom:8px;font-weight:600">友情链接</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <a class="wlink" href="https://blog.li00000.xyz/" target="_blank" rel="noopener">🌍 全球养老规划 · RetirePlan</a>
+              <a class="wlink" href="https://tjtkw.li00000.xyz/" target="_blank" rel="noopener">💪 健身体脂计算器</a>
+              <a class="wlink" href="https://bmuws.li00000.xyz/" target="_blank" rel="noopener">🧁 烘焙计算器</a>
+              <a class="wlink" href="https://bwzib.li00000.xyz/" target="_blank" rel="noopener">🔥 篝火燃烧时长计算</a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="wdrop" id="wdrop"><span>松开鼠标以打开图片</span></div>
