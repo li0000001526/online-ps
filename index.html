@@ -273,15 +273,6 @@ input[type=color]::-webkit-color-swatch{border:1px solid var(--line2);border-rad
           </div>
           <div class="wsafe"><b>隐私说明：</b>所有编辑均在浏览器本地完成，无需注册，图片不会上传到任何服务器</div>
           <div style="margin-top:14px;font-size:12px"><a href="privacy.html" style="color:var(--txt-dim);text-decoration:none">隐私政策</a></div>
-          <div class="wlinks" style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line2)">
-            <div style="font-size:11px;color:var(--txt-dim);margin-bottom:8px;font-weight:600">友情链接</div>
-            <div style="display:flex;flex-wrap:wrap;gap:8px">
-              <a class="wlink" href="https://blog.li00000.xyz/" target="_blank" rel="noopener">🌍 全球养老规划 · RetirePlan</a>
-              <a class="wlink" href="https://tjtkw.li00000.xyz/" target="_blank" rel="noopener">💪 健身体脂计算器</a>
-              <a class="wlink" href="https://bmuws.li00000.xyz/" target="_blank" rel="noopener">🧁 烘焙计算器</a>
-              <a class="wlink" href="https://bwzib.li00000.xyz/" target="_blank" rel="noopener">🔥 篝火燃烧时长计算</a>
-            </div>
-          </div>
         </div>
       </div>
       <div class="wdrop" id="wdrop"><span>松开鼠标以打开图片</span></div>
@@ -1708,6 +1699,9 @@ function buildMenubar(){
     {label:'博客', items:[
       {label:'博客中心…', act:showBlogCenter, icon:'doc'},
     ]},
+    {label:'工具', items:[
+      {label:'工具中心…', act:showToolsCenter, icon:'doc'},
+    ]},
     {label:'帮助', items:[
       {label:'快捷键', act:showShortcuts},
       {label:'关于在线PS', act:showAbout},
@@ -2150,6 +2144,41 @@ function openModal(opts){
   document.addEventListener('keydown', escHandler);
   opts.onMount&&opts.onMount();
   return {close, el:modal};
+}
+function showToolsCenter(){
+  const tools = [
+    {title:'全球养老规划 · RetirePlan', desc:'三语版养老规划指南：三支柱体系、税优账户、资产配置、分龄方案，含退休储蓄与反推月存两枚交互测算器。', tags:['理财','三语','计算器'], url:'https://blog.li00000.xyz/', color:'#FFD93D', emoji:'🌍'},
+    {title:'健身体脂计算器', desc:'BMI / 体脂率 / 基础代谢 BMR 一步算清，附体脂率对照表，帮你判断减脂还是增肌。', tags:['健身','体脂','BMI'], url:'https://tjtkw.li00000.xyz/', color:'#4FD1C5', emoji:'💪'},
+    {title:'烘焙计算器', desc:'配方换算、烤箱温度对照、酵母用量速查，家庭烘焙不翻车。', tags:['烘焙','换算','厨房'], url:'https://bmuws.li00000.xyz/', color:'#F687B3', emoji:'🧁'},
+    {title:'篝火燃烧时长计算', desc:'输入木柴规格与堆叠方式，估算篝火能烧多久，露营备柴不再凭感觉。', tags:['户外','露营','估算'], url:'https://bwzib.li00000.xyz/', color:'#F6AD55', emoji:'🔥'},
+  ];
+  const cards = tools.map((t,i)=>`
+    <div class="blog-card" data-idx="${i}" style="cursor:pointer;border:1px solid var(--line2);border-radius:10px;padding:14px 15px;margin-bottom:12px;background:var(--bg2);transition:border-color .15s">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <div style="width:38px;height:38px;border-radius:9px;background:${t.color};display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">${t.emoji}</div>
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:700;font-size:14px">${t.title}</div>
+          <div style="font-size:11.5px;color:var(--txt-dim);margin-top:1px">${t.tags.map(t=>'#'+t).join(' ')}</div>
+        </div>
+        <span style="color:var(--txt-dim);font-size:16px">›</span>
+      </div>
+      <div style="font-size:12.5px;color:var(--txt-dim);line-height:1.7">${t.desc}</div>
+    </div>`).join('');
+  const m = openModal({
+    title:'🧰 工具中心',
+    body:`<div style="margin-bottom:12px;font-size:12.5px;color:var(--txt-dim)">更多免费在线小工具，点击在新标签页打开：</div>${cards}
+    <div style="text-align:center;font-size:12px;color:var(--txt-dim);padding:4px 0 2px">更多工具持续更新中…</div>`,
+    buttons:[{text:'关闭', cls:'ghost'}]
+  });
+  m.el.querySelectorAll('.blog-card').forEach(card=>{
+    card.addEventListener('mouseenter', ()=>card.style.borderColor='var(--accent)');
+    card.addEventListener('mouseleave', ()=>card.style.borderColor='var(--line2)');
+    card.addEventListener('click', ()=>{
+      const t = tools[+card.dataset.idx];
+      window.open(t.url,'_blank');
+      m.close();
+    });
+  });
 }
 function showBlogCenter(){
   const blogs = [
